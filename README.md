@@ -1,5 +1,7 @@
 # libtorch-example-codes
 
-Learning libtorch
+Work in progress repository to track progress learning libtorch
 
-## [Reference link](https://github.com/pytorch/examples/tree/master/cpp) 
+## Reference
+
+[Offcial examples](https://github.com/pytorch/examples/tree/master/cpp) 

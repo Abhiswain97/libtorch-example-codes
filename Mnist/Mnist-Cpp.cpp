@@ -1,11 +1,4 @@
-#pragma cling add_library_path("/home/abhishek/Downloads/libtorch-cxx11-abi-shared-with-deps-1.8.1+cpu/libtorch/lib/")
-#pragma cling add_include_path("/home/abhishek/Downloads/libtorch-cxx11-abi-shared-with-deps-1.8.1+cpu/libtorch/include")
-#pragma cling add_include_path("/home/abhishek/Downloads/libtorch-cxx11-abi-shared-with-deps-1.8.1+cpu/libtorch/include/torch/csrc/api/include/")
-
-#pragma cling load("/home/abhishek/Downloads/libtorch-cxx11-abi-shared-with-deps-1.8.1+cpu/libtorch/lib/libc10.so")
-#pragma cling load("/home/abhishek/Downloads/libtorch-cxx11-abi-shared-with-deps-1.8.1+cpu/libtorch/lib/libgomp-75eea7e8.so.1")
-#pragma cling load("/home/abhishek/Downloads/libtorch-cxx11-abi-shared-with-deps-1.8.1+cpu/libtorch/lib/libtorch.so")
-
+#include <iostream>
 #include <torch/torch.h>
 
 torch::Tensor Flatten(torch::Tensor x){
