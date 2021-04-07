@@ -9,3 +9,5 @@ Work in progress repository to track progress learning libtorch
 [Pytorch C++ frontend design and philosophy](https://pytorch.org/tutorials/advanced/cpp_frontend.html#running-the-network-in-forward-mode)
 
 [libtorch all-in-one docs](https://www.ccoderun.ca/programming/doxygen/pytorch/index.html)
+
+[libtorch version of Pytorch tutorials](https://github.com/prabhuomkar/pytorch-cpp)
