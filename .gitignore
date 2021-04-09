@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,c++,jupyternotebooks
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,c++,jupyternotebooks
+# Created by https://www.toptal.com/developers/gitignore/api/vscode,c++,jupyternotebooks,python
+# Edit at https://www.toptal.com/developers/gitignore?templates=vscode,c++,jupyternotebooks,python
 
 ### C++ ###
 # Prerequisites
@@ -46,7 +46,7 @@
 # gitignore template for Jupyter Notebooks
 # website: http://jupyter.org/
 
-.ipynb_checkpoints/
+.ipynb_checkpoints
 */.ipynb_checkpoints/*
 
 # IPython
@@ -192,11 +192,21 @@ dmypy.json
 .pytype/
 
 # operating system-related files
-*.DS_Store #file properties cache/storage on macOS
-Thumbs.db #thumbnail cache on Windows
+# file properties cache/storage on macOS
+*.DS_Store
+# thumbnail cache on Windows
+Thumbs.db
 
 # profiling data
 .prof
 
 
-# End of https://www.toptal.com/developers/gitignore/api/python,c++,jupyternotebooks
+### vscode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# End of https://www.toptal.com/developers/gitignore/api/vscode,c++,jupyternotebooks,python
