@@ -5,7 +5,6 @@ cmake_minimum_required (VERSION 3.8)
 
 project(Mnist)
 
-set(Torch_DIR ~/libtorch/share/cmake/Torch)
 find_package(Torch REQUIRED)
 
 set(CXXFLAGS "-W -Wall -Wextra -Werror -std=c++14")
