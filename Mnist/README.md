@@ -2,9 +2,24 @@
 
 Transfer learning for digit recognition using resnet18.
 
+## How to run
+
+- Refer to my [LibtorchDemo](https://github.com/Abhiswain97/LibtorchDemo) repo to download libtorch and test it.
+- Clone this repo: `git clone https://github.com/Abhiswain97/libtorch-example-codes.git`
+- Then to run,
+
+  ```
+  cd libtorch-example-codes/Mnist
+  sh run.sh <absolute path to your libtorch download>
+  ```
+
+- If all goes well then you should see this,
+
+  <img src="output.png">
+
 ## Reference
 
-- [Offcial examples](https://github.com/pytorch/examples/tree/master/cpp) 
+- [Offcial examples](https://github.com/pytorch/examples/tree/master/cpp)
 
 - [Pytorch C++ frontend design and philosophy](https://pytorch.org/tutorials/advanced/cpp_frontend.html#running-the-network-in-forward-mode)
 
@@ -12,4 +27,4 @@ Transfer learning for digit recognition using resnet18.
 
 - [libtorch version of Pytorch tutorials](https://github.com/prabhuomkar/pytorch-cpp)
 
-- [Transfer-Learning-Dogs-Cats-Libtorch](https://github.com/BuffetCodes/Transfer-Learning-Dogs-Cats-Libtorch) 
+- [Transfer-Learning-Dogs-Cats-Libtorch](https://github.com/BuffetCodes/Transfer-Learning-Dogs-Cats-Libtorch)
