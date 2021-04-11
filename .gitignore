@@ -212,3 +212,4 @@ Thumbs.db
 # End of https://www.toptal.com/developers/gitignore/api/vscode,c++,jupyternotebooks,python
 
 Mnist/.vscode/
+Mnist/data/
