@@ -15,6 +15,84 @@ struct Options
     datasets::MNIST::Mode test = datasets::MNIST::Mode::kTest;
 };
 
+template <typename DataLoader>
+void train(
+    torch::jit::script::Module &model,
+    torch::nn::Linear &fc,
+    DataLoader &train_loader,
+    DataLoader &test_loader,
+    torch::optim::Optimizer &optimizer,
+    torch::nn::CrossEntropyLoss &criterion,
+    map<string, int> &sizes,
+    torch::Device device,
+    vector<string> &modes)
+{
+    double best_loss = 0.0;
+
+    for (size_t i = 0; i < Options().epochs; ++i)
+    {
+        for (string &mode : modes)
+        {
+            auto &data_loader = mode == string("Training") ? train_loader : test_loader;
+
+            if (mode == string("Training"))
+                fc->train();
+            else
+            {
+                torch::NoGradGuard no_grad_guard;
+                fc->eval();
+            };
+
+            int64_t batch_index = 0;
+            double avg_loss;
+
+            for (auto &batch : data_loader)
+            {
+                auto data = batch.data.to(device);
+                auto target = batch.target.to(device);
+
+                vector<torch::jit::IValue> input;
+                input.push_back(data);
+
+                if (mode == string("Training"))
+                    optimizer.zero_grad();
+
+                auto output = model.forward(input).toTensor();
+
+                output = output.view({output.size(0), -1});
+                output = fc->forward(output);
+
+                auto loss = criterion(output, target);
+
+                if (mode == string("Training"))
+                {
+                    loss.backward();
+                    optimizer.step();
+                }
+                else
+                    avg_loss += loss.template item<float>();
+
+                if (batch_index++ % 10 == 0)
+                {
+                    std::printf(
+                        "\r%s Epoch: %ld [%5ld/%d] Loss: %.4f",
+                        mode.c_str(),
+                        i + 1,
+                        batch_index * batch.data.size(0),
+                        sizes[mode],
+                        loss.template item<float>());
+                }
+            }
+
+            if (mode == string("Training"))
+                std::printf("\nAverage test loss for epoch %zu: %.4f\n", i, avg_loss / (double)sizes["Testing"]);
+
+            if (avg_loss < best_loss)
+                torch::save(fc, "../best_model.pt");
+        }
+    }
+}
+
 int main()
 {
     Options options;
@@ -79,72 +157,9 @@ int main()
     sizes["Training"] = 60000;
     sizes["Testing"] = 10000;
 
-    double best_loss = 0.0;
-
     auto start_training = chrono::high_resolution_clock::now();
 
-    for (size_t i = 0; i < options.epochs; ++i)
-    {
-        for (string &mode : modes)
-        {
-            auto &data_loader = mode == string("Training") ? *train_loader : *test_loader;
-
-            if (mode == string("Training"))
-                fc->train();
-            else
-            {
-                torch::NoGradGuard no_grad_guard;
-                fc->eval();
-            };
-
-            int64_t batch_index = 0;
-            double avg_loss;
-
-            for (auto &batch : data_loader)
-            {
-                auto data = batch.data.to(device);
-                auto target = batch.target.to(device);
-
-                vector<torch::jit::IValue> input;
-                input.push_back(data);
-
-                if (mode == string("Training"))
-                    optimizer.zero_grad();
-
-                auto output = model.forward(input).toTensor();
-
-                output = output.view({output.size(0), -1});
-                output = fc->forward(output);
-
-                auto loss = criterion(output, target);
-
-                if (mode == string("Training"))
-                {
-                    loss.backward();
-                    optimizer.step();
-                }
-                else
-                    avg_loss += loss.template item<float>();
-
-                if (batch_index++ % 10 == 0)
-                {
-                    std::printf(
-                        "\r%s Epoch: %ld [%5ld/%d] Loss: %.4f",
-                        mode.c_str(),
-                        i + 1,
-                        batch_index * batch.data.size(0),
-                        sizes[mode],
-                        loss.template item<float>());
-                }
-            }
-
-            if (mode == string("Training"))
-                std::printf("\nAverage test loss for epoch %zu: %.4f\n", i, avg_loss / (double)sizes["Testing"]);
-
-            if (avg_loss < best_loss)
-                torch::save(fc, "../best_model.pt");
-        }
-    }
+    train(model, fc, *train_loader, *test_loader, optimizer, criterion, sizes, device, modes);
 
     auto end_training = chrono::high_resolution_clock::now();
 
