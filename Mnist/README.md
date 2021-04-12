@@ -14,10 +14,6 @@ Transfer learning for digit recognition using resnet18.
   cd libtorch-example-codes/Mnist
   sh run.sh <absolute path to your libtorch download>
   ```
-
-- If all goes well then you should see this,
-
-  <img src="output.png">
   
 ### PyTorch
 
