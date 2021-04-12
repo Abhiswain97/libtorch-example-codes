@@ -4,6 +4,8 @@ Transfer learning for digit recognition using resnet18.
 
 ## How to run
 
+### libtorch
+
 - Refer to my [LibtorchDemo](https://github.com/Abhiswain97/LibtorchDemo) repo to download libtorch and test it.
 - Clone this repo: `git clone https://github.com/Abhiswain97/libtorch-example-codes.git`
 - Then to run,
@@ -16,6 +18,12 @@ Transfer learning for digit recognition using resnet18.
 - If all goes well then you should see this,
 
   <img src="output.png">
+  
+### PyTorch
+
+- I have used a library called [MyVision](https://github.com/Abhiswain97/MyVision) to simplfy things for the demo.
+ 
+- Jupyter notebook containing code -> [Here](https://github.com/Abhiswain97/libtorch-example-codes/blob/main/Mnist/Mnist-PyTorch/mnist-using-myvision.ipynb)
 
 ## Reference
 
