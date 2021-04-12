@@ -23,6 +23,8 @@ Transfer learning for digit recognition using resnet18.
 
 ## Reference
 
+- [PyTorch official transfer learning tutorial](https://pytorch.org/tutorials/beginner/transfer_learning_tutorial.html)
+
 - [Offcial examples](https://github.com/pytorch/examples/tree/master/cpp)
 
 - [Pytorch C++ frontend design and philosophy](https://pytorch.org/tutorials/advanced/cpp_frontend.html#running-the-network-in-forward-mode)
