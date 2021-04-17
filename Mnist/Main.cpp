@@ -77,7 +77,8 @@ void test(
     torch::jit::script::Module net,
     torch::nn::Linear lin,
     Dataloader &test_dl,
-    size_t dataset_size)
+    size_t dataset_size,
+    float best_loss)
 {
     // To calculate loss and accuracy per epoch
     float avg_loss = 0.0f;
@@ -132,8 +133,6 @@ void test(
     std::cout << "\n Average Testing loss: " << final_loss;
     std::cout << "\n Average Testing accuracy: " << (avg_accuracy / float(dataset_size)) * 100 << "%";
 
-    static float best_loss = 0.0f;
-
     if(final_loss < best_loss ){
         std::cout << "\n Saving model..." << std::endl;
         torch::save(lin, "best_model.pt")
@@ -144,6 +143,8 @@ auto main() -> int
 {
     Main options;
     torch::DeviceType device_type = torch::cuda::is_available() ? torch::kCUDA : torch::kCPU;
+
+    static float best_loss = 0.0f;
 
     if (device_type == torch::kCUDA)
         std::cout << "Cuda is available! \n Training on GPU" << std::endl;
@@ -206,7 +207,7 @@ auto main() -> int
         train(model, fc, *train_dl, optimizer, train_dataset_size, device);
 
         std::cout << "\nTesting: " << std::endl;
-        test(model, fc, *test_dl, test_dataset_size);
+        test(model, fc, *test_dl, test_dataset_size, best_loss);
 
         std::cout << "\n\n";
     }
