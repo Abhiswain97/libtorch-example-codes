@@ -127,8 +127,17 @@ void test(
         avg_accuracy += corrects.template item<int64_t>();
     }
 
-    std::cout << "\n Average Testing loss: " << avg_loss / float(dataset_size);
+    float final_loss = avg_loss / float(dataset_size);
+
+    std::cout << "\n Average Testing loss: " << final_loss;
     std::cout << "\n Average Testing accuracy: " << (avg_accuracy / float(dataset_size)) * 100 << "%";
+
+    static float best_loss = 0.0f;
+
+    if(final_loss < best_loss ){
+        std::cout << "\n Saving model..." << std::endl;
+        torch::save(lin, "best_model.pt")
+    }
 }
 
 auto main() -> int
@@ -178,8 +187,7 @@ auto main() -> int
             .workers(2));
 
     // Loading the jit model
-    torch::jit::script::Module model = torch::jit::load(
-        "/home/abhishek/Desktop/libtorch-example-codes/Mnist/resnet18.pt");
+    torch::jit::script::Module model = torch::jit::load(options.jit_model_path);
 
     // Create the last Fully connected layer of resnet18
     torch::nn::Linear fc{512, 10};

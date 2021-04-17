@@ -7,7 +7,18 @@ Transfer learning for digit recognition using resnet18.
 ### libtorch
 
 - Refer to my [LibtorchDemo](https://github.com/Abhiswain97/LibtorchDemo) repo to download libtorch and test it.
+
 - Clone this repo: `git clone https://github.com/Abhiswain97/libtorch-example-codes.git`
+
+- Download the data from [this](http://yann.lecun.com/exdb/mnist/) link. Remember where you download it. Now in `Mnist.cpp`, in `struct Options` set, 
+  ```
+  data_path = <absolute path to downloaded data folder>
+  ``` 
+
+- There's seem to be some issue with relative paths on libtorch, so set the provided `jit_model_path` to `<absolute path to provided resnet18.pt>`. Mostly,
+it will be like `<path from root>/libtorch-example-codes/Mnist/resnet18.pt`
+
+
 - Then to run,
 
   ```

@@ -23,6 +23,7 @@ void test(
 struct Main
 {
     const char *data_path = "/home/abhishek/Desktop/libtorch-example-codes/Mnist/Mnist-PyTorch/data/MNIST/raw";
+    const char *jit_model_path = "/home/abhishek/Desktop/libtorch-example-codes/Mnist/resnet18.pt";
     size_t epochs = 10;
     size_t train_batch_size = 128;
     size_t test_batch_size = 1000;
