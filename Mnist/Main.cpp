@@ -179,7 +179,7 @@ auto main() -> int
 
     // Loading the jit model
     torch::jit::script::Module model = torch::jit::load(
-        "/home/abhishek/Desktop/libtorch-example-codes/Mnist/resnet1.pt");
+        "/home/abhishek/Desktop/libtorch-example-codes/Mnist/resnet18.pt");
 
     // Create the last Fully connected layer of resnet18
     torch::nn::Linear fc{512, 10};
