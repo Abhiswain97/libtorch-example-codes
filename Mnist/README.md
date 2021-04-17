@@ -14,6 +14,7 @@ Transfer learning for digit recognition using resnet18.
   ```
   data_path = <absolute path to downloaded data folder>
   ``` 
+  Mostly it will be like, `<path from root>/libtorch-example-codes/Mnist/Mnist-PyTorch/data/MNIST/raw`
 
 - There's seem to be some issue with relative paths on libtorch, so set the provided `jit_model_path` to `<absolute path to provided resnet18.pt>`. Mostly,
 it will be like `<path from root>/libtorch-example-codes/Mnist/resnet18.pt`
