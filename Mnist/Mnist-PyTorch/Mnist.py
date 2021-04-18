@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 from torchvision.models import resnet18
 
-import MyVision
 
 class Net(nn.Module):
     def __init__(self, transform=None):
@@ -18,7 +17,8 @@ class Net(nn.Module):
     def forward(self, x):
         return self.model(x)
 
+ip = torch.randn((1, 1, 224, 224))
 
 net = Net()
 
-print(net)
+print(net(ip))
