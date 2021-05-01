@@ -10,7 +10,7 @@ struct Options
 {
     size_t epochs = 5;
     int64_t batch_size = 128;
-    const char *data_path = "/home/abhishek/Desktop/libtorch-example-codes/Mnist/data";
+    const char *data_path = "/home/abhishek/Desktop/libtorch-example-codes/Mnist/Mnist-PyTorch/data/MNIST/raw";
     datasets::MNIST::Mode train = datasets::MNIST::Mode::kTrain;
     datasets::MNIST::Mode test = datasets::MNIST::Mode::kTest;
 };
