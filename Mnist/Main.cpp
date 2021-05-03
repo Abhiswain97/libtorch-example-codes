@@ -135,7 +135,7 @@ void test(
 
     if(final_loss < best_loss ){
         std::cout << "\n Saving model..." << std::endl;
-        torch::save(lin, "best_model.pt")
+        torch::save(lin, "best_model.pt");
     }
 }
 
