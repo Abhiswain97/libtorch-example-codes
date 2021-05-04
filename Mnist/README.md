@@ -18,7 +18,7 @@ Transfer learning for digit recognition using resnet18.
 
 - There's seem to be some issue with relative paths on libtorch, set
   ```
-  const char *jit_model_path` = `<absolute path to provided resnet18.pt>`.
+  const char *jit_model_path = <absolute path to provided resnet18.pt>
   ```
   Mostly, it will be like `<path from root>/libtorch-example-codes/Mnist/resnet18.pt`
 
