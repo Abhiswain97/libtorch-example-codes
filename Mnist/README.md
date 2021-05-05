@@ -10,16 +10,20 @@ Transfer learning for digit recognition using resnet18.
 
 - Clone this repo: `git clone https://github.com/Abhiswain97/libtorch-example-codes.git`
 
-- Download the data from [this](http://yann.lecun.com/exdb/mnist/) link. Remember where you download it. Now in `Main.h`, in `struct Main` set, 
+- Download the data from [this](http://yann.lecun.com/exdb/mnist/) link. Remember where you download it. Now in `Main.h`, in `struct Main` set,
+
   ```
   const char *data_path = <absolute path to downloaded data folder>
-  ``` 
+  ```
+
   Mostly it will be like, `<path from root>/libtorch-example-codes/Mnist/Mnist-PyTorch/data/MNIST/raw`
 
 - There's seem to be some issue with relative paths on libtorch, set
+
   ```
   const char *jit_model_path = <absolute path to provided resnet18.pt>
   ```
+
   Mostly, it will be like `<path from root>/libtorch-example-codes/Mnist/resnet18.pt`
 
 - Then to run,
@@ -27,6 +31,56 @@ Transfer learning for digit recognition using resnet18.
   ```
   cd libtorch-example-codes/Mnist
   sh run.sh <absolute path to your libtorch download>
+  ```
+
+- If all goes well, you should see this:
+
+  ```
+  (base) ➜  Mnist git:(develpoment) ✗ sh run.sh ~/libtorch
+  Creating build folder and building the project
+  -- The C compiler identification is GNU 9.3.0
+  -- The CXX compiler identification is GNU 9.3.0
+  -- Detecting C compiler ABI info
+  -- Detecting C compiler ABI info - done
+  -- Check for working C compiler: /usr/bin/cc - skipped
+  -- Detecting C compile features
+  -- Detecting C compile features - done
+  -- Detecting CXX compiler ABI info
+  -- Detecting CXX compiler ABI info - done
+  -- Check for working CXX compiler: /usr/bin/c++ - skipped
+  -- Detecting CXX compile features
+  -- Detecting CXX compile features - done
+  -- Looking for pthread.h
+  -- Looking for pthread.h - found
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+  -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed
+  -- Looking for pthread_create in pthreads
+  -- Looking for pthread_create in pthreads - not found
+  -- Looking for pthread_create in pthread
+  -- Looking for pthread_create in pthread - found
+  -- Found Threads: TRUE
+  -- Found CUDA: /usr/local/cuda (found version "11.2")
+  -- Caffe2: CUDA detected: 11.2
+  -- Caffe2: CUDA nvcc is: /usr/local/cuda/bin/nvcc
+  -- Caffe2: CUDA toolkit directory: /usr/local/cuda
+  -- Caffe2: Header version is: 11.2
+  -- Found CUDNN: /usr/lib/x86_64-linux-gnu/libcudnn.so
+  -- Found cuDNN: v8.1.1  (include: /usr/include, library: /usr/lib/x86_64-linux-gnu/libcudnn.so)
+  -- /usr/local/cuda/lib64/libnvrtc.so shorthash is 369df368
+  -- Autodetected CUDA architecture(s):  6.1
+  -- Added CUDA NVCC flags for: -gencode;arch=compute_61,code=sm_61
+  -- Found Torch: /home/abhishek/libtorch/lib/libtorch.so
+  -- Configuring done
+  -- Generating done
+  -- Build files have been written to: /home/abhishek/Desktop/libtorch-example-codes/Mnist/build
+  [ 50%] Building CXX object CMakeFiles/Mnist.dir/Main.cpp.o
+  [100%] Linking CXX executable Mnist
+  [100%] Built target Mnist
+  Cuda is available!
+  Training on GPU
+  Epoch: 1
+  Training:
+  Batch: 101 Loss: 2.5911
   ```
 
 ### PyTorch
